@@ -1,0 +1,283 @@
+1.Класс "Пользователь" /User: Создайте класс User с атрибутами:id, username, email. Реализуйте методы для установки значений (без конструктора)атрибутов и метод для вывода информации о пользователе.
+-public functionsetId($id){};
+-publicfunctionsetUsername($id){};
+-publicfunctionsetEmail($id){};
+-publicfunctionshowAllUserInfo(){};
+
+<?php
+class User {
+    public $id;
+    public $username;
+    public $email;
+
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    public function setUsername($username) {
+        $this->username = $username;
+    }
+
+    public function setEmail($email) {
+        $this->email = $email;
+    }
+
+    public function showAllUserInfo() {
+        echo "User ID: " . $this->id . ";\r>";
+        echo "Username: " . $this->username . ";\r>";
+        echo "Email: " . $this->email . ";\r>";
+    }
+}
+
+$user1 = new User();
+$user1-> id=1;
+$user1->username='Tamara';
+$user1->email='tgrafsk';
+
+echo $user1->showAllUserInfo();
+
+
+?>
+
+2.Класс "Калькулятор"/Calculator: 
+Напишите класс Calculator, который имеет методы для выполнения базовых математических операций(сложение,вычитание,умножение,деление).
+Реализуйте методы для выполнения этих операций над двумя числами.
+-publicfunctionplus($a,$b){+}
+-publicfunctionmult($a,$b){*}
+-publicfunctionminus($a,$b){-}
+-publicfunctiondivision($a,$b){/}
+
+<?php
+class Calculator {
+    public $a;
+    public $b;
+
+    public function plus($a,$b) {
+      return $a+$b;
+    }
+     public function minus($a,$b) {
+      return $a-$b;
+    }
+     public function mult($a,$b) {
+      return $a*$b;
+    }
+     public function division($a,$b) {
+      if ($b == 0) {
+      	return 'Eror: Division by zero';
+      
+      }
+      else{
+      	return $a/$b;
+      }
+    }
+}
+$new1 = new Calculator();
+
+
+echo $new1 -> plus(10, 2 ).";\r";
+
+echo $new1 -> minus(10, 2).";\r";
+echo $new1 -> mult(10, 2).";\r";
+echo $new1 -> division(10, 2).";\r";
+?>
+
+3.Класс"Книга"/Book:
+Создайте класс Book с атрибутами:title, author, genre, year. Реализуйте методы для установки значений атрибутов и метод для получения информации о книге с помощью конструктора.
+<?php
+class Book {
+    public $title;
+    public $author;
+    public $genre;
+    public $year;
+
+    public function __construct($title,$author,$genre,$year) {
+      $this->title=$title;
+      $this->author=$author;
+      $this->genre=$genre;
+      $this->year=$year;
+    }
+    public function showBookInfo(){
+       echo "Title: " . $this->title . ";\r";
+       echo "Author: " . $this->author . ";\r";
+       echo "Genre: " . $this->genre . ";\r";
+       echo "Year: " . $this->year . ";\r";
+    }
+     
+}
+$new1 = new Book('Tamara','Kristin','Musical','1996');
+
+echo $new1->showBookInfo() 
+?>
+
+4.Класс "Банковский счет" /BankAccount: 
+Напишите класс BankAccount, имеющий атрибуты:accountNumber, balance, owner. Реализуйте методы для пополнения и снятия денег с банковского счета , а также метод для получения текущего баланса
+
+<?php
+class BankAccount {
+    private $accountNumber;
+    private $balance;
+    private $owner;
+
+    public function __construct($accountNumber, $balance, $owner) {
+        $this->accountNumber = $accountNumber;
+        $this->balance = $balance;
+        $this->owner = $owner;
+    }
+
+    public function deposit($amount) {
+        $this->balance += $amount;
+        return $this -> balance;
+    }
+
+    public function withdraw($amount) {
+        if ($this->balance >= $amount) {
+            $this->balance -= $amount;
+            return $this -> balance;
+        } else {
+            echo "Недостаточно средств";
+        }
+        
+    }
+
+    public function getBalance() {
+        return $this->balance;
+    }
+}
+$user = new BankAccount(1 , 100 , 'Tamara');
+ echo $user -> withdraw(10). ";\r";
+ echo $user -> deposit(15). ";\r";
+?>
+
+5.Класс "Товар"/Product:
+Создайте класс Product с атрибутами:name, price, quantity. Реализуйте методы для установки значений атрибутов, подсчета общей стоимости товара (цена*количество)и вывода информации о товаре.
+
+<?php
+class Product {
+    private $name;
+    private $price;
+    public $quantity;
+
+    public function __construct($name, $price) {
+        $this->name = $name;
+        $this->price = $price;
+    }
+    public function getAmount($quantity) {
+    	$this -> price *= $quantity;
+    	return $this -> price;
+    }
+    public function showInfo() {
+    	echo "Name :" . $this ->name . ";\r";
+    	echo "Price :" . $this ->price . ";\r";
+    }
+    
+}
+ $product1 = new Product ("banana" , 100);
+ echo $product1 -> showInfo();
+ echo $product1 -> getAmount(10);
+ 
+?>
+
+6.Форма для передачи данных методом GET:
+Создайте HTML-форму с несколькими полями (например,name,email) и кнопкой отправки. Напишите скрипт на PHP, который будет получать данные из формы методом GET с помощью$_GET. Посмотрите, что будет в массиве $_GET с помощью цикла foreach или print_r Выведите полученные данные на экран  
+
+</head>
+<body>
+<h2>Form example</h2>
+<form action="">
+    <label for="username">Login</label>
+    <input type="text" name="username" id="username"/><br/>
+    <label for="username">Email</label>
+    <input type="email" name="email" id="email"/><br/>
+    <input type="submit"  value="login">
+</form>
+<?php
+$login = '';
+$email = '';
+if (isset($_GET['username'])) $login = $_GET['username'];
+if (isset($_GET['email'])) $email = $_GET['email'];
+
+print_r($_GET);
+
+?>
+</body>
+</html>
+
+7.Создайте HTML-форму с полями(например,username,password) и кнопкой отправки. Напишите скрипт на PHP, который будет получать данные из формы методом POST с помощью$_POST. Посмотрите, что будет в массиве$_POST с помощью цикла foreach или print_r 
+Используйте полученные данные для проверки или обработки(например, проверкапароля) и выведите результат на экран.
+
+</head>
+<body>
+<h2>Form example</h2>
+<form action="">
+ <label>Username:</label>
+  <input type="text" name="username"><br>
+  <label>Password:</label>
+  <input type="password" name="password"><br>
+  <input type="submit" value="Submit">   
+</form>
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $username = $_POST['username'];
+  $password = $_POST['password'];
+
+  if ($password == '123') {
+    echo "Добро пожаловать, $username!";
+  } else {
+    echo "Неправильный пароль.";
+  }
+}
+print_r($_POST);
+?>
+</body>
+</html>
+
+8.Использование$_REQUEST для обработки данных из формы:
+
+Создайте форму(или возьмите первую),которая может отправлять данные любым методом GET, таким и методом POST.Напишите скрипт на PHP,который будет использовать $_REQUEST для получения данных, независимо от метода отправки формы.Посмотрите, что будет в массиве $_REQUEST с помощью цикла foreach или print_r Обработайте полученные данные,например приведите их к(int) и выведите на экран.
+
+<form method="POST" action="process-form.php">
+  <label>Имя:</label>
+  <input type="text" name="name"><br>
+  <label>Возраст:</label>
+  <input type="text" name="age"><br>
+  <input type="submit" value="Отправить">
+</form>
+<?php
+$name = $_REQUEST['name'];
+$age = $_REQUEST['age'];
+
+$age = (int) $age;
+
+echo "Здравствуйте, $name. Ваш возраст: $age лет.";
+print_r($_REQUEST);
+?>
+
+9.Создайте несколько ссылок с различными параметрами в URL(например:page.php?category=books,page.php?category=clothes,page.php?category=games). Напишите скрипт на PHP, который будет использовать $_REQUEST для получения параметров из URL и соответствующим образом обрабатывать эти данные(например, выводить разное содержимое в зависимости от параметра category).
+If books //textfrombookspage
+If clothes //textfromclothespage
+If games //textfromclothespage
+
+<a href="page.php?category=books">Книги</a>
+<a href="page.php?category=clothes">Одежда</a>
+<a href="page.php?category=games">Игры</a>
+<?php
+$category = $_REQUEST['category'];
+
+if ($category == 'books') {
+  echo "Текст из раздела 'Книги'";
+} else if ($category == 'clothes') {
+  echo "Текст из раздела 'Одежда'";
+} else if ($category == 'games') {
+  echo "Текст из раздела 'Игры'";
+} else {
+  echo "Неверный параметр в URL";
+}
+foreach ($_REQUEST as $key => $value) {
+  echo "$key: $value<br>";
+?>
+
+
+
+
+
+ 
